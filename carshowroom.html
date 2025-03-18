@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Car Showroom</title>
+    <script>
+        function showDetails(name, description, image) {
+            const carImage = document.getElementById('car-image');
+            
+            // Add slide effect
+            carImage.style.opacity = '0';
+            carImage.style.transform = 'translateX(-100%)';
+            setTimeout(() => {
+                document.getElementById('car-name').innerText = name;
+                document.getElementById('car-description').innerText = description;
+                carImage.src = image;
+                carImage.style.transform = 'translateX(0)';
+                carImage.style.opacity = '1';
+            }, 300);
+            
+            document.getElementById('details').style.display = 'block';
+        }
+
+        function bookCar() {
+            alert('Your car has been booked!');
+        }
+    </script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+        .showroom {
+            margin-top: 20px;
+        }
+        .slider-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap; /* Ensures images adjust on smaller screens */
+        }
+        .car {
+            cursor: pointer;
+            padding: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+        .car img {
+            width: 150px; /* Increase image size */
+            height: 100px;
+            object-fit: cover; /* Ensure proper image display */
+            border-radius: 8px; /* Slight rounded corners */
+        }
+        .car:hover {
+            transform: scale(1.1);
+        }
+        .details {
+            margin-top: 20px;
+        }
+        #car-image {
+            transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+            position: relative;
+        }
+        button {
+            padding: 10px;
+            margin-top: 10px;
+            cursor: pointer;
+            background-color: blue;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        button:hover {
+            background-color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="showroom">
+        <h1>Car Showroom</h1>
+        <div class="slider-container">
+            <div class="car" onclick="showDetails('Tesla Model S', 'Electric, 400-mile range', 'https://i.postimg.cc/GmV8kGcY/photo-1617704548623-340376564e68.jpg')">
+                <img src="https://i.postimg.cc/GmV8kGcY/photo-1617704548623-340376564e68.jpg" alt="Tesla Model S">
+                <p>Tesla Model S</p>
+            </div>
+            <div class="car" onclick="showDetails('BMW M3', '3.0L Twin-Turbo, 503 HP', 'https://i.postimg.cc/0ybZkYWJ/bmw-css-7-series-protection-ms-new-standard.jpg')">
+                <img src="https://i.postimg.cc/0ybZkYWJ/bmw-css-7-series-protection-ms-new-standard.jpg" alt="BMW M3">
+                <p>BMW M3</p>
+            </div>
+            <div class="car" onclick="showDetails('Audi R8', 'V10 Engine, 602 HP', 'https://i.postimg.cc/wxnDXC03/2024-audi-rs7-sportback-performance-nardo-grey-front-view-053.avif')">
+                <img src="https://i.postimg.cc/wxnDXC03/2024-audi-rs7-sportback-performance-nardo-grey-front-view-053.avif" alt="Audi R8">
+                <p>Audi R8</p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="details" class="details" style="display: none;">
+        <h2 id="car-name"></h2>
+        <img id="car-image" src="" alt="Car Image" height="300" width="400">
+        <p id="car-description"></p>
+        <button onclick="bookCar()">Book My Car</button>
+    </div>
+</body>
+</html>
